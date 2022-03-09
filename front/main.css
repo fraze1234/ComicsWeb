@@ -8,7 +8,7 @@ body{
     
 
 .header{
-    height: 100px;
+    height: 200px;
     width: 100%;
     background-color: dark;
 }
@@ -19,4 +19,5 @@ img{
 }
 .fi{
     text-decoration: none;
+
 }
