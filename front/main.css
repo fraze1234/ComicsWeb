@@ -11,6 +11,7 @@ body{
     height: 200px;
     width: 100%;
     background-color: dark;
+    padding: 10px;
 }
 img{
     height: 40px;
