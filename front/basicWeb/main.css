@@ -41,6 +41,7 @@ header{
     
 }
 .navi:hover{
-    color: aqua;
-    /* цвет надо изменить */
+    color: rgb(158, 158, 158);
+    text-decoration: underline;
+    
 }
