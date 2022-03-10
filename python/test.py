@@ -1,2 +1,2 @@
 print ("hello")
-input("напиши имя ")
+import django
