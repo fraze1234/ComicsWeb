@@ -21,6 +21,7 @@ pip install Django
     display: inline;
     text-align: center;
     align-items: center;
+    float: right;
     
 }
 .navi{
