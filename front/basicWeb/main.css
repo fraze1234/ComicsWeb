@@ -15,15 +15,7 @@ header{
     background-color: rgb(255, 255, 255);
     
 }
-/*выровнить по центру вybp*/
-.logo_header{
-    height: 50px;
-    width: 50px;
-    display: inline;
-    
-
-}
-
+pip install Django
 .nav_header{
     padding: 0px 0px 0px 60%;
     display: inline;
