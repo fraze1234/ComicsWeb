@@ -10,22 +10,50 @@ if(isset($_POST['go']) )
 {
     //проверки
 
-    ///на пустоту
+    
     $errors = array();
-    session_start();
-
-    $a = rand(1,20);
-    $b = rand(1,20);
-    $_SESSION['result'] = $a + $b;
+   
+    ///проверка логина
 
     if(trim($_POST['login']) == '')
     {
         $errors[] = 'введите логин!';
     }
+
+    if(mb_strlen($_POST['login']) < 3 )
+    {
+        $errors[] = 'не меньше 3 символов в логине ! ';
+    }
+
+    $result = $link->query(" SELECT * FROM `comics` WHERE login = '{$_POST["login"]}' ;");
+    $user = $result->fetch_assoc();
+
+    if($user > 0)
+    {
+        $errors[] = 'пользователь с таким логином уже существует !';
+    }
+
+    //
+    ///проверка логина
+    //
+
     if(trim($_POST['email']) == '')
     {
         $errors[] = 'введите email';
     }
+
+    $em = $link->query(" SELECT * FROM `comics` WHERE email = '{$_POST["email"]}' ;");
+    $new = $em->fetch_assoc();
+    
+    if($new > 0)
+    {
+        $errors[] = 'пользователь с такой почтой  уже существует !';
+    }
+
+    //
+    ///проверка пароля 
+    //
+
     if($_POST['password'] == '')
     {
         $errors[] = 'введите пароли!';
@@ -35,38 +63,13 @@ if(isset($_POST['go']) )
         $errors[] = 'повторный пароль не совпадает!';
     }
 
-    /// проверки на количество символов
-
-    if(mb_strlen($_POST['login']) < 3 ){
-        $errors[] = 'не меньше 3 символов в логине ! ';
-    }
     if(mb_strlen($_POST['password']) < 5 ){
         $errors[] = ' пароль должен содержать не меньше 5 символов  ';
     }
 
-    ///проверка на созданый аккаунт
+    ////
+    //все хорошо
 
-    $result = $link->query(" SELECT * FROM `comics` WHERE login = '{$_POST["login"]}' ;");
-    $em = $link->query(" SELECT * FROM `comics` WHERE email = '{$_POST["email"]}' ;");
-
-    $new = $em->fetch_assoc();
-   
-    $user = $result->fetch_assoc();
-
-    if($user > 0)
-    {
-        $errors[] = 'пользователь с таким логином уже существует !';
-    }
-    if($new > 0)
-    {
-        $errors[] = 'пользователь с такой почтой  уже существует !';
-    }
-
-    
-
-    
-
-    //все хорощо
     if(empty($errors)){
         
         $login = $_POST['login'];
@@ -94,8 +97,8 @@ if(isset($_POST['go']) )
 <body>
 
 <form method="POST" >
-    <p> логин: <input type="text" name="login" value="<?php  ?>"></p>
-    <p> введите email: <input type="text" name="email" value="<?php  ?>"></p>
+    <p> логин: <input type="text" name="login" value=""></p>
+    <p> введите email: <input type="text" name="email" value=""></p>
     <p> пароль: <input type="password" name="password" ></p>
     <p>введите пароль еще раз <input type="password" name="password2"></p>
     <p><input type="submit" name="go" value="Создать акаунт"></p>
