@@ -18,13 +18,15 @@ if(isset($_POST['go'])){
     if($user == 0)
     {
         $errors[] = 'введен не верный логин или пароль';
+        echo '<div class="errors">'.array_shift($errors).'</div>';
+        echo '<br>';
     }elseif(empty($errors))
     {
-        echo "вы успешно авторизовались ";
+        
 
+        setcookie('user', $user['login'], time() + 3600 * 24 * 4, "/");
     }
-    echo '<div class="errors">'.array_shift($errors).'</div>';
-        echo '<br>';
+    
 
 }
 ?>
@@ -43,7 +45,11 @@ if(isset($_POST['go'])){
 <link rel="stylesheet" href="style.css">
 
 <body>
+<?php
 
+    if(isset($_COOKIE['user']) == ''):
+
+?>
 <div class="reg">
 <form method="POST">
     <p>  <input type="text" name="login" placeholder="введите логин" class="input"></p>
@@ -52,6 +58,9 @@ if(isset($_POST['go'])){
 </form>
     <a href="http://localhost/ComicsWeb/php/index.php"  class="sal">создать аккаунт</a>
 </div>
-
+<?php else: ?>
+<p>готово</p> 
+<a href="http://localhost/ComicsWeb/php/exit.php">выйти</a>
+<?php endif;?>
 </body>
 </html>

@@ -1,0 +1,39 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.reg{
+    text-align: center;
+ 
+}
+.input{
+    font-size: 25px;
+    border-color: black;
+
+}
+.button{
+    background-color: black;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 17px;
+    border-color: black;
+    margin: 0px 170px 0px 0px;
+    display: inline-block;
+}
+.errors{
+    font-size: 30px;
+    color: red;
+    text-align: center;
+
+}
+.button:active{
+    background-color: #fff;
+    color: black;
+}
+.sal{
+    color: lime;
+    text-decoration: none;
+    font-size: 25px;
+    margin: 0px 140px 0px 0px;
+}
