@@ -3,26 +3,24 @@
     margin: 0%;
 }
 body{
-    background-color: #131313;
     font-family: 'Open Sans', sans-serif;
 }
-    
+
 
 header{
-    height: 100px;
+    height: 150px;
     width: 99%;
     padding: 10px;
     background-color: rgb(255, 255, 255);
-    
+
 }
-pip install Django
 .nav_header{
-    padding: 0px 0px 0px 60%;
+    padding: 40px 40px 40px 60%;
     display: inline;
     text-align: center;
     align-items: center;
     float: right;
-    
+
 }
 .navi{
     color: #000;
@@ -31,12 +29,14 @@ pip install Django
     padding-top: 70px;
     font-size: 20px;
     padding: 10px;
-    
+
 }
 .navi:hover{
     color: rgb(158, 158, 158);
-    text-decoration: underline;
-    
+
+}
+a{
+    text-decoration: none;
 }
 .img{
     height: 100px;
@@ -66,13 +66,12 @@ a:link {
     border-radius: 10px;
   } 
   a:hover {
-    color: #5c6169; 
-    background: rgba(167, 160, 160, 0.4);
+    background: #000;
     transition: all .2s 0s ease-in-out;
     border-radius: 10px;
   }
   a:active {
-    color: #919396; 
+    color: #000;
     opacity: 0.1;
     background: rgba(238, 238, 238, 0.4);
     transition: all .2s 0s ease-in-out;
@@ -92,14 +91,12 @@ button{
 }
 .button1{
     border-radius: 5px;
+    border-color: #000;
+    background-color: #fff;
 }
 .button2{
     background: #000000;
     color:rgb(255, 255, 255);
     border-radius: 5px;
+    border-color: #000;
 }
-a{
-    text-decoration: none;
-}
-
-
