@@ -113,7 +113,6 @@ if(isset($_COOKIE['user']) == ''):
     <p> <input type="password" name="password" placeholder="введите пароль" class="input"></p>
     <p> <input type="password" name="password2" placeholder="введите пароль второй раз" class="input"></p>
     <p> <input type="submit" name="go" value="Создать аккаунт" class="button"></p>
-    
 </form>
 </div>
 <?php else: ?>

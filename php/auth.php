@@ -42,7 +42,7 @@ if(isset($_POST['go'])){
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="reg.css">
 
 <body>
 <?php
