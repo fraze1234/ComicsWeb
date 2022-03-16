@@ -116,9 +116,12 @@ if(isset($_COOKIE['user']) == ''):
 </form>
 </div>
 <?php else: ?>
-<p>готово</p> 
-<a href="http://localhost/ComicsWeb/php/exit.php">выйти</a>
-<?php endif;?>
+
+
+<?php endif;
+
+    header('location: http://localhost/ComicsWeb/front/basic.php');
+?>
 </body>
 </html>
 

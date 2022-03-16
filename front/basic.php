@@ -15,23 +15,37 @@
     <header>  
         <img class="img" src="images/111.png" alt="" class="logo_header">
         <nav class="nav_header">
-                <a href="#" class="navi">Купить комиксы</a>
+                <a href="href.html" class="navi">Купить комиксы</a>
                 <a  href="#" class="navi">О нас</a>
                 <a  href="#" class="navi">Соц.сети</a>
         </nav>
+        
         <nav class="nav_button">
-            <button class="button1" href="">Регистрация</button>
-            <button class="button2" href="http://localhost/ComicsWeb/php/auth.php">Войти</button>
+        <?php
 
+        if(isset($_COOKIE['user']) == ''):
+            
+        ?>
+            <a href="http://localhost/ComicsWeb/php/index.php" class="button1">регистрация</a>
+            <a href="http://localhost/ComicsWeb/php/auth.php" class="button2">войти</a>
+        <?php endif; ?>
+        <?php
+
+        if(isset($_COOKIE['user']) > ''):
+            
+        ?>
+            <a href="http://localhost/ComicsWeb/php/exit.php" class="button1">выйти </a>
+        <?php endif; ?>
         </nav>
        
+        
+
     </header>
 
     <div class="content">
-        <div><img src="images/ced8adf6b73e208d5fdb0a9bc4037b21--beautiful-boys-beautiful-artwork.jpg"</div>
+        <div><img src="images/ced8adf6b73e208d5fdb0a9bc4037b21--beautiful-boys-beautiful-artwork.jpg"></div>
     </div>
     </header>
-
 
 
     <footer></footer>

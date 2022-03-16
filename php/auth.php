@@ -59,8 +59,11 @@ if(isset($_POST['go'])){
     <a href="http://localhost/ComicsWeb/php/index.php"  class="sal">создать аккаунт</a>
 </div>
 <?php else: ?>
-<p>готово</p> 
-<a href="http://localhost/ComicsWeb/php/exit.php">выйти</a>
-<?php endif;?>
+
+<?php 
+    endif;
+
+    header('location:http://localhost/ComicsWeb/front/basic.php');
+?>
 </body>
 </html>
