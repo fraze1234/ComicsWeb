@@ -8,23 +8,38 @@ if(isset($_POST['go'])){
     $password = filter_var(trim($_POST['password']));
     
     $errors = array();
+    $a = true;
 
     //запрос данных в таблицу use
     $result = $link->query(" SELECT * FROM `comics` WHERE login = '$login' AND password = '$password';");
    
     $user = $result->fetch_assoc();
+    
+    //админка
+
+    if($login == 'A1dmens455' && $password = 'typeComicsLab' ){
+        setcookie('Admin', $a,  time()  + 3600 * 24 * 4, "/");
+        echo "привет админ !";
+        $a = false;
+        header('location: http://localhost/ComicsWeb/front/basic.php');
+    }
    
     //авторизация
-    if($user == 0)
-    {
-        $errors[] = 'введен не верный логин или пароль';
-        echo '<div class="errors">'.array_shift($errors).'</div>';
-        echo '<br>';
-    }elseif(empty($errors))
-    {
-        
+    if($a = true){
+        if($user == 0)
+        {
+            $errors[] = 'введен не верный логин или пароль';
+            echo '<div class="errors">'.array_shift($errors).'</div>';
+            echo '<br>';
+            
+        }
+        if($user > 0)
+        {
+            
+            setcookie('user', $login, time()  + 3600 * 24 * 4, "/");
+            header('location: http://localhost/ComicsWeb/front/basic.php');
+        }
 
-        setcookie('user', $user['login'], time() + 3600 * 24 * 4, "/");
     }
     
 
@@ -45,11 +60,7 @@ if(isset($_POST['go'])){
 <link rel="stylesheet" href="reg.css">
 
 <body>
-<?php
 
-    if(isset($_COOKIE['user']) == ''):
-
-?>
 <div class="reg">
 <form method="POST">
     <p>  <input type="text" name="login" placeholder="введите логин" class="input"></p>
@@ -58,12 +69,6 @@ if(isset($_POST['go'])){
 </form>
     <a href="http://localhost/ComicsWeb/php/index.php"  class="sal">создать аккаунт</a>
 </div>
-<?php else: ?>
 
-<?php 
-    endif;
-
-    header('location:http://localhost/ComicsWeb/front/basic.php');
-?>
 </body>
 </html>

@@ -5,14 +5,17 @@ require('link.php');
 
 
 
+
 if(isset($_POST['go']) )
 {
     //проверки
 
     
     $errors = array();
-   
+
+    //
     ///проверка логина
+    //
 
     $result = $link->query(" SELECT * FROM `comics` WHERE login = '{$_POST["login"]}' ;");
     $user = $result->fetch_assoc();
@@ -20,16 +23,20 @@ if(isset($_POST['go']) )
     if(trim($_POST['login']) == '')
     {
         $errors[] = 'введите логин!';
+        
+        
     }
 
     if(mb_strlen($_POST['login']) < 3 )
     {
         $errors[] = 'не меньше 3 символов в логине ! ';
+        
     }
 
     if($user > 0)
     {
         $errors[] = 'пользователь с таким логином уже существует !';
+       
     }
 
     //
@@ -39,6 +46,7 @@ if(isset($_POST['go']) )
     if(trim($_POST['email']) == '')
     {
         $errors[] = 'введите email';
+        
     }
 
     $em = $link->query(" SELECT * FROM `comics` WHERE email = '{$_POST["email"]}' ;");
@@ -80,11 +88,12 @@ if(isset($_POST['go']) )
         $q = "INSERT INTO `Comics` (`id`, `login`, `Email`, `password`) VALUES (NULL, '$login', '$email', '$password');";
         mysqli_query($link, $q);
         
-       
+        header('location: http://localhost/ComicsWeb/front/basic.php');
 
     }else{
         echo '<div class = "errors" >'.array_shift($errors).'</div>';
         echo '<br>';
+        $red = "red";
     }
         
 };
@@ -101,6 +110,7 @@ if(isset($_POST['go']) )
 
 <link rel="stylesheet" href="reg.css">
 <body>
+
 <?php
 
 if(isset($_COOKIE['user']) == ''):
@@ -120,7 +130,7 @@ if(isset($_COOKIE['user']) == ''):
 
 <?php endif;
 
-    header('location: http://localhost/ComicsWeb/front/basic.php');
+    
 ?>
 </body>
 </html>

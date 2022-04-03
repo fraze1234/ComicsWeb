@@ -10,12 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="main.css" rel="stylesheet">
+ 
+    
 </head>
 <body>
     <header>  
         <img class="img" src="images/111.png" alt="" class="logo_header">
         <nav class="nav_header">
-                <a href="href.html" class="navi">Купить комиксы</a>
+                <a href="http://localhost/ComicsWeb/front/price.php" class="navi">Купить комиксы</a>
                 <a  href="#" class="navi">О нас</a>
                 <a  href="#" class="navi">Соц.сети</a>
         </nav>
@@ -26,15 +28,15 @@
         if(isset($_COOKIE['user']) == ''):
             
         ?>
-            <a href="http://localhost/ComicsWeb/php/index.php" class="button1">регистрация</a>
-            <a href="http://localhost/ComicsWeb/php/auth.php" class="button2">войти</a>
+            <a href="http://localhost/ComicsWeb/register/index.php" class="button1">регистрация</a>
+            <a href="http://localhost/ComicsWeb/register/auth.php" class="button2">войти</a>
         <?php endif; ?>
         <?php
 
         if(isset($_COOKIE['user']) > ''):
             
         ?>
-            <a href="http://localhost/ComicsWeb/php/exit.php" class="button1">выйти </a>
+            <a href="http://localhost/ComicsWeb/register/exit.php" class="button1">выйти </a>
         <?php endif; ?>
         </nav>
        
