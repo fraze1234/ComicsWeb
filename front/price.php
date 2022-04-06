@@ -1,29 +1,32 @@
 
 <?php
-
+session_start();
 require('C:\Server\Apache24\htdocs\ComicsWeb\register\link.php');
 
 $ast = 'SELECT `filename`, `title`, `id`, `price` FROM `products` ';
 $res = mysqli_query($link, $ast);
 $products = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
-foreach ($products as $product){
-}
 
-if(isset($_POST['plus'])){
+
+if(isset($_GET['id'])){
 
     echo 'добавлено';
     
-    session_start();
-
-    foreach ($products as $product){
-        $ast = "SELECT * FROM `products` WHERE title = '{$product['title']}' ";
+   
+    $ast = "SELECT * FROM `products` WHERE id = {$_GET['id']} ";
         $res = mysqli_query($link, $ast);
         $pro = mysqli_fetch_all($res, MYSQLI_ASSOC);
-        echo '<pre>';
-        var_dump($pro);
-        echo '</pre>';
-     }
+       
+       $cart = array();
+       $cart[] = $pro;
+       
+
+         $_SESSION["cart"] = $pro;
+
+        /*echo '<pre>';
+        var_dump($_SESSION["cart"]);
+        echo '</pre>';*/
     
 
     
@@ -33,7 +36,8 @@ if(isset($_POST['plus'])){
 
 if(isset($_POST['go'])){ 
 
-    session_start();
+    
+   
      $name = $_POST['gl'];
 
     $ast = "SELECT * FROM `products` WHERE title = '{$name}' ";
@@ -158,6 +162,13 @@ if(isset($_POST['go'])){
     <header>  
         <img class="img" src="images/111.png" alt="" class="logo_header">
         <nav class="nav_header">
+                <?php
+                    if(count($_SESSION["cart"]) != 0):
+                ?>
+                <a href="http://localhost/ComicsWeb/front/cart.php" class="navi">перейти в корзину</a>
+                <?php
+                    endif;
+                ?>
                 <a href="http://localhost/ComicsWeb/front/price.php" class="navi">Купить комиксы</a>
                 <a  href="#" class="navi">О нас</a>
                 <a  href="#" class="navi">Соц.сети</a>
@@ -176,16 +187,14 @@ if(isset($_POST['go'])){
     </div>
 <div class = "price">
   <?php
-    if(empty($_SESSION["TRUE"]) ):
+    if(empty($_SESSION) ):
     foreach ($products as $product){
 
         echo '<div class = "buy">';
         echo '<h1 class = "title">' . $product['title'] .'</h1>';
         echo '<a href="#"><img src="images/product_images/'. $product['filename'].'" alt="" class = "imges"></a>';
         echo '<h2 class = "price2"> ' . $product['price'] .' руб</h2>';
-        echo '<form method="POST">';
-        echo '<input type="submit"  class = "plus" name = "plus" value = "добавить в корзину">';
-        echo '</from>';
+        echo '<a href = "price.php?id= '.  $product['id'].'" class = "plus" name = "plus" >добавить в корзину</a>';
         echo '</div>';
 
     }    
@@ -200,15 +209,13 @@ if(isset($_POST['go'])){
         $pro = mysqli_fetch_all($ad2, MYSQLI_ASSOC);
        
 
-       foreach($pro as $p){
+       foreach($pro as $product){
 
             echo '<div class = "buy">';
-            echo '<h1 class = "title">' . $p['title'] .'</h1>';
-            echo '<a href="#"><img src="images/product_images/'. $p['filename'] .'" alt="" class = "imges"></a>';
-            echo '<h2 class = "price2"> ' . $p['price'] .' руб</h2>';
-            echo '<form method="POST">';
-            echo '<input type="submit"  class = "plus" name = "plus" value = "добавить в корзину">';
-            echo '</from>';
+            echo '<h1 class = "title">' . $product['title'] .'</h1>';
+            echo '<a href="#"><img src="images/product_images/'. $product['filename'] .'" alt="" class = "imges"></a>';
+            echo '<h2 class = "price2"> ' . $product['price'] .' руб</h2>';
+            echo '<a href = "price.php?id= '.  $product['id'].'" class = "plus" name = "plus" >добавить в корзину</a>';
             echo '</div>';
        }
     endif;
